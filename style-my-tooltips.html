@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Style-my-tootltips jquery plugin demo</title>
+<style type="text/css">
+<!--
+/* style for this demo */
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+body{margin:0; padding:0; background:#c3d3d5; font-family:Verdana,Geneva,sans-serif; font-size:13px; color:#333; line-height:20px;}
+a:link,a:visited{color:#000; text-decoration:none; background:#f9e5b7; font-size:15px; font-family:Georgia, "Times New Roman", Times, serif; text-shadow:0px 0px 0px #fff;}
+a:hover{color:#f9e5b7; background:#d11c24;}
+.topleft,.topright,.bottomleft,.bottomright{position:absolute; margin:20px;}
+.topleft{top:0; left:0;}
+.topright{top:0; right:0;}
+.bottomleft{bottom:0; left:0;}
+.bottomright{bottom:0; right:0;}
+.center{position:relative; width:400px; margin:60px auto;}
+.center p img{float:left; margin:5px 15px 5px 0;}
+h1,p{text-shadow:1px 1px 1px #fff;}
+h1{font-size:36px; font-family:"Lobster",Georgia,serif; color:#d11c24;}
+-->
+</style>
+<!-- Style-my-tooltips CSS -->
+<link href="style-my-tooltips.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="center">
+		<h1>Style-my-tooltips demo</h1>
+		<p>Style native browser tooltips easily with <strong>Style-My-Tooltips</strong> <a href="http://jquery.com/" title="Open jquery.com" target="_blank">jQuery</a> plugin. A very simple script to enhance the look of tooltips. It works just like browser's native tooltips with few options and styling via CSS. By default, the script affects any element with <em>title</em> attribute like <a href="#" title="Link title...">links</a>, paragraphs, images etc. You can easily set it to affect only specific classes.</p>
+		<p><img src="a_thumb.jpg" width="200" height="150" alt="Obey the kitty!" title="Obey the kitty!" /></p>
+		<p>&larr; Hover your cursor over the image to see its title.</p>
+		<p title="Paragraph title">Hover your cursor over this paragraph to see its tooltip.</p>
+		<p><a href="http://manos.malihu.gr/style-my-tooltips-jquery-plugin" title="Go to original post at manos.malihu.gr">Plugin homepage</a></p>
+		<p>Style-my-tooltips automatically applies to dynamically generated elements. <a href="#" rel="add new element" title="Add new element">Click here to append new paragraphs</a> with styled tooltips.</p>
+	</div>
+	<div class="topleft">
+		<a href="#" title="Tooltip is always visible inside the viewport. Its position changes automatically according to document dimensions, page scroll and its location within browser window.">Hover me!</a>
+	</div>
+	<div class="topright">
+		<a href="#" title="Tooltip is always visible inside the viewport. Its position changes automatically according to document dimensions, page scroll and its location within browser window.">Hover me!</a> 
+	</div>
+	<div class="bottomleft">
+		<a href="#" title="Tooltip is always visible inside the viewport. Its position changes automatically according to document dimensions, page scroll and its location within browser window.">Hover me!</a> 
+	</div>
+	<div class="bottomright">
+		<a href="#" title="Tooltip is always visible inside the viewport. Its position changes automatically according to document dimensions, page scroll and its location within browser window.">Hover me!</a> 
+	</div>
+	<!-- jQuery via Google CDN -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<!-- Style-my-tooltips plugin script and style_my_tooltips function call with default option parameters -->
+	<script type="text/javascript" src="jquery.style-my-tooltips.js"></script>
+	<script>
+		jQuery.noConflict();
+		(function($){
+			$(document).ready(function(){
+				$("[title]").style_my_tooltips({ 
+					tip_follows_cursor:false, //boolean
+					tip_delay_time:700, //milliseconds
+					tip_fade_speed:300 //milliseconds
+				});
+				//dynamically added elements demo function
+				$("a[rel='add new element']").click(function(e){
+					e.preventDefault();
+					$(this).attr("title","Add another element").parent().after("<p title='New paragraph title'>This is a new paragraph! Hover to see the title.</p>");
+				});
+			});
+		})(jQuery);
+	</script>
+</body>
+</html>

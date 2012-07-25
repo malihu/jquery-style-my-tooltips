@@ -6,7 +6,8 @@
 			var defaults={ 
 				tip_follows_cursor:false, //tooltip follows cursor: boolean
 				tip_delay_time:700, //tooltip delay before displaying: milliseconds
-				tip_fade_speed:300 //tooltip fade in/out speed: milliseconds
+				tip_fade_speed:300, //tooltip fade in/out speed: milliseconds
+				attribute: "title" //tooltip text come from this attribute
 			};
 			var options=$.extend(defaults,options);
 			if($("#s-m-t-tooltip").length===0){
@@ -30,14 +31,14 @@
 				});
 				$(document).unbind("mousemove");
 				$this.removeClass("smt-current-element");
-				if($this.attr("title")===""){
-					$this.attr("title",$this.data("smt-title"));
+				if($this.attr(options.attribute)===""){
+					$this.attr(options.attribute,$this.data("smt-title"));
 				}
 			});
 			return this["live"]("mouseover",function(event){
 				var $this=$(this);
-				var title=$this.attr("title");
-				$this.addClass("smt-current-element").data({"smt-title":title,"smt-fade-speed":options.tip_fade_speed}).attr("title","");
+				var title=$this.attr(options.attribute);
+				$this.addClass("smt-current-element").data({"smt-title":title,"smt-fade-speed":options.tip_fade_speed}).attr(options.attribute,"");
 				smtTooltip.style_my_tooltips("update",{
 					title:title,
 					speed:options.tip_fade_speed,

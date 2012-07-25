@@ -7,17 +7,17 @@
 				tip_follows_cursor:false, //tooltip follows cursor: boolean
 				tip_delay_time:700, //tooltip delay before displaying: milliseconds
 				tip_fade_speed:300, //tooltip fade in/out speed: milliseconds
-				attribute: "title" //tooltip text come from this attribute
-			};
-			var options=$.extend(defaults,options);
+				attribute:"title" //tooltip text come from this attribute
+			},
+			options=$.extend(defaults,options);
 			if($("#s-m-t-tooltip").length===0){
 				$("body").append("<div id='s-m-t-tooltip'><div></div></div>");
 			}
 			var smtTooltip=$("#s-m-t-tooltip"); 
 			smtTooltip.css({"position":"absolute","display":"none"}).data("smt-z-index",smtTooltip.css("z-index")).children("div").css({"width":"100%","height":"100%"});
 			function smtGetCursorCoords(event){
-				var smtCursorCoordsX=event.pageX;
-				var smtCursorCoordsY=event.pageY;
+				var smtCursorCoordsX=event.pageX,
+					smtCursorCoordsY=event.pageY;
 				smtTooltip.style_my_tooltips("position",{
 					smtCursorCoordsX:smtCursorCoordsX,
 					smtCursorCoordsY:smtCursorCoordsY
@@ -36,8 +36,8 @@
 				}
 			});
 			return this["live"]("mouseover",function(event){
-				var $this=$(this);
-				var title=$this.attr(options.attribute);
+				var $this=$(this),
+					title=$this.attr(options.attribute);
 				$this.addClass("smt-current-element").data({"smt-title":title,"smt-fade-speed":options.tip_fade_speed}).attr(options.attribute,"");
 				smtTooltip.style_my_tooltips("update",{
 					title:title,
@@ -74,13 +74,13 @@
 			});
 		},
 		position:function(options){
-			var $this=$(this);
-			var winScrollX=$(window).scrollLeft();
-			var winScrollY=$(window).scrollTop();
-			var tipWidth=$this.outerWidth(true);
-			var tipHeight=$this.outerHeight(true);
-			var leftOffset=(options.smtCursorCoordsX+tipWidth)-winScrollX;
-			var topOffset=(options.smtCursorCoordsY+tipHeight)-winScrollY;
+			var $this=$(this),
+				winScrollX=$(window).scrollLeft(),
+				winScrollY=$(window).scrollTop(),
+				tipWidth=$this.outerWidth(true),
+				tipHeight=$this.outerHeight(true),
+				leftOffset=(options.smtCursorCoordsX+tipWidth)-winScrollX,
+				topOffset=(options.smtCursorCoordsY+tipHeight)-winScrollY;
 			if(leftOffset<=$(window).width() && leftOffset<=$(document).width()){
 				$this.css("left",options.smtCursorCoordsX);
 			}else{

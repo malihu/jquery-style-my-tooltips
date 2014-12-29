@@ -30,7 +30,7 @@
                     smtCursorCoordsY: smtCursorCoordsY
                 });
             }
-            $(".smt-current-element").on("mouseout mousedown click", function() {
+            $(document).on("mouseout mousedown click", ".smt-current-element", function() {
                 var $this = $(this);
                 clearTimeout(smtTooltip_delay);
                 smtTooltip.style_my_tooltips("hide", {
